@@ -688,7 +688,7 @@ public class FMRadioPlayerService extends Service {
         }
 
         transitionToState(State.POWERING_UP);
-        mAM.requestAudioFocus(mAudioFocusListener, AudioManager.STREAM_FM, AudioManager.AUDIOFOCUS_GAIN);
+        mAM.requestAudioFocus(mAudioFocusListener, AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN);
         setMediaButtonReceiverEnabled(true);
         registerBroadcastReceiver();
         registerObserver();
@@ -775,7 +775,7 @@ public class FMRadioPlayerService extends Service {
                     Log.d(TAG, "Audio path is busy");
                     setFMMuteState(true);
                 } else if (action.equals(AudioManager.VOLUME_CHANGED_ACTION)) {
-                    if (intent.getIntExtra(AudioManager.EXTRA_VOLUME_STREAM_TYPE, -1) == AudioManager.STREAM_FM) {
+                    if (intent.getIntExtra(AudioManager.EXTRA_VOLUME_STREAM_TYPE, -1) == AudioManager.STREAM_MUSIC) {
                         int volume = intent.getIntExtra(AudioManager.EXTRA_VOLUME_STREAM_VALUE, 0);
                         Log.d(TAG, "Received FM volume change intent, setting volume to " + volume);
                         Preferences.setVolume(FMRadioPlayerService.this, volume);
@@ -1060,7 +1060,7 @@ public class FMRadioPlayerService extends Service {
                     mAudioMode = 0;
                     notifyTuneResult(false);
                 }
-                mAM.setStreamVolume(AudioManager.STREAM_FM, Preferences.getVolume(this), 0);
+                mAM.setStreamVolume(AudioManager.STREAM_MUSIC, Preferences.getVolume(this), 0);
                 updateStateIndicators();
             } else {
                 Log.v(TAG, "Initializing tuning to last frequency " + lastFreq);

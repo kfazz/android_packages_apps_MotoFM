@@ -463,7 +463,7 @@ public class FMRadioMain extends ListActivity implements SeekBar.OnSeekBarChange
         mActionBar = getActionBar();
 
         setContentView(R.layout.main);
-        setVolumeControlStream(AudioManager.STREAM_FM);
+        setVolumeControlStream(AudioManager.STREAM_MUSIC);
 
         mAM = (AudioManager) getSystemService(AUDIO_SERVICE);
         mCurFreq = Preferences.getLastFrequency(this);
